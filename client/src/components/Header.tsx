@@ -17,7 +17,7 @@ const Header = () => {
               <div className='border-r'>
                 <Dropdown />
               </div>
-              <Search className='text-3xl pt-2 ml-3 text-[#757575]' />
+              <Search className='text-3xl pt-2 ml-3 text-[#757575] focus:ring-0' />
               <input type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm placeholder:text-[#757575] bg-[#f2f2f2] rounded-r-lg" placeholder="Search for items" required />
             </div>
           </form>
