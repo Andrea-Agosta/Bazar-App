@@ -6,12 +6,14 @@ CREATE TABLE public.users
     user_first_name VARCHAR(255) NOT NULL,
     user_last_name VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
-    user_registration_date: DATE NOT NULL,
+    user_registration_date DATE NOT NULL,
+    user_avatar BYTEA,
 )
 
 CREATE TABLE public.products
 (
     product_id uuid NOT NULL PRIMARY KEY,
+    product_id_ref SERIAL NOT NULL,
     product_name VARCHAR(255) NOT NULL,
     product_description VARCHAR(255) NOT NULL,
     product_location VARCHAR(255) NOT NULL,
@@ -23,9 +25,6 @@ CREATE TABLE public.products
       FOREIGN KEY(user_id) 
 	  REFERENCES users(user_id),
 )
-
-ALTER TABLE public.products
-    OWNER to postgres;
 
 CREATE TABLE public.tags
 (
@@ -89,3 +88,17 @@ CREATE TABLE public.messages
       FOREIGN KEY(receiver_id) 
 	  REFERENCES users(user_id),
 )
+
+CREATE TABLE public.products_images
+(
+    image_id uuid NOT NULL PRIMARY KEY,
+    product_id uuid NOT NULL UNIQUE,
+    image BYTEA,
+    CONSTRAINT fk_product
+      FOREIGN KEY(product_id) 
+	  REFERENCES products(product_id),
+)
+
+ALTER TABLE public.products
+    OWNER to postgres;
+    
