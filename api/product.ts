@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express';
-import { IQueryProduct } from 'type';
+import { IQueryProduct } from 'type/comment';
 const router = express.Router();
 
 router.get('/:idTag', async (req: Request<{}, {}, {}, IQueryProduct>, res: Response) => {

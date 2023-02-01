@@ -1,7 +1,3 @@
-export interface IQueryUser {
-  idRef: number;
-}
-
 export interface IQueryProduct {
   tag: string;
   idRef: number;

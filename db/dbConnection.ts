@@ -12,17 +12,17 @@ const pool = new Pool({
   password: 'postgres123',
 });
 
-const connectionDB = async (query: string) => {
+export const connectionDB = async (query: string) => {
   const client = await pool.connect();
   const product = await client.query(query);
   return await product.rows[0];
 };
 
-export const createTag = async (tagName: string) => {
-  const id: string = await uuidv4();
-  const query: string = `INSERT INTO tags (ID,tag_name) VALUES (${id}, ${tagName});`;
-  await connectionDB(query);
-}
+// export const createTag = async (tagName: string) => {
+//   const id: string = await uuidv4();
+//   const query: string = `INSERT INTO tags (ID,tag_name) VALUES (${id}, ${tagName});`;
+//   await connectionDB(query);
+// }
 
 // const getProductById = async productId => {
 //   const query = `SELECT * FROM salt_products WHERE product_id = '${productId}'`;

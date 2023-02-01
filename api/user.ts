@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express';
-import { IQueryUser } from 'type';
+import { IQueryUser } from 'type/comment';
 const router = express.Router();
 
 

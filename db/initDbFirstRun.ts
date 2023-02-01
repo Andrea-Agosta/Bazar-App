@@ -1,7 +1,7 @@
 // const axios = require('axios').default;
 // const tags = require('./tags.json');
-import { IInitItem } from 'type';
-import { createTag } from './db';
+import { IInitItem } from 'type/comment';
+import { createTag } from './dbConnection';
 import tags from './tags.json';
 
 const tagsIdArray: number[] = [];
