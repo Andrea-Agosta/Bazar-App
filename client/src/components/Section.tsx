@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
+import { Slideshow } from './Slideshow';
 
 const Section = () => {
   return (
@@ -10,6 +11,7 @@ const Section = () => {
       </div>
       <div className='bg-white p-4 transition duration-200 ease-in-out overflow-hidden' >
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+          {/* <Slideshow /> */}
           {<Card />}
         </div>
       </div>

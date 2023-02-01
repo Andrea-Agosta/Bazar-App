@@ -13,7 +13,6 @@ CREATE TABLE public.users
 CREATE TABLE public.products
 (
     product_id uuid NOT NULL PRIMARY KEY,
-    product_id_ref SERIAL NOT NULL,
     product_name VARCHAR(255) NOT NULL,
     product_description VARCHAR(255) NOT NULL,
     product_location VARCHAR(255) NOT NULL,
