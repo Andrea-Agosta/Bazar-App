@@ -14,15 +14,6 @@ router.get('/', async (req: Request<{}, {}, {}, IQueryComment>, res: Response) =
   }
 });
 
-// router.get('/id', async (req: Request, res: Response) => {
-//   try {
-//     const response = await getCommentById(req.params.id);
-//     res.status(200).json(response);
-//   } catch (err) {
-//     res.status(400).send({ message: err.message });
-//   }
-// });
-
 router.post('/', async (req: Request<{ productId: string }, {}, {}, IQueryComment>, res: Response) => {
   try {
     const response = await addNewComment(req);
@@ -43,8 +34,12 @@ router.patch('/:id', async (req: Request<{ commentId: string }, {}, {}, IQueryCo
 
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const response = await deleteCommentById(req.params.id);
-    res.status(200).json(response);
+    if (req.params.id) {
+      const response = await deleteCommentById(req.params.id);
+      res.status(200).json(response);
+    } else {
+      res.status(400).send('Bad request');
+    }
   } catch (err) {
     res.status(400).send({ message: err.message });
   }

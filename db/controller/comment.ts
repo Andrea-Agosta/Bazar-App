@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { addComment, deleteComment, getCommentsByProductId, updateComment } from "db/comment";
 import { IComments, IQueryComment } from "type/comment";
 import { Request } from 'express';
+import { getUserById } from './user';
+import { getProductById } from './product';
 
 const uuidRegex: RegExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
 
@@ -16,8 +18,10 @@ export const addNewComment = async (req: Request<{ productId: string }, {}, {}, 
   const productId: string = req.params.productId;
   const userId: string = req.query.userId;
   const comment: string = req.query.comment;
+  const checkUserId = await getUserById(userId);
+  const checkProduct = await getProductById(productId)
 
-  if (productId && uuidRegex.test(productId) && userId && comment) {
+  if (checkProduct && checkUserId && comment) {
     const commentId: string = await uuidv4();
     const date: Date = new Date();
     return await addComment(commentId, productId, userId, date, comment);
@@ -26,16 +30,14 @@ export const addNewComment = async (req: Request<{ productId: string }, {}, {}, 
 };
 
 export const updateCommentById = async (req: Request<{ commentId: string }, {}, {}, IQueryComment>): Promise<IComments> => {
-  const commentId: string = req.params.commentId;;
+  const commentId: string = req.params.commentId;
   const comment: string = req.query.comment;
-  if (commentId && uuidRegex.test(commentId) && comment !== '') {
+  if (uuidRegex.test(commentId) && comment !== '') {
     return await updateComment(commentId, comment);
   }
   throw new Error('Id not found');
 };
 
-export const deleteCommentById = (commentId: string | undefined): void => {
-  if (commentId && uuidRegex.test(commentId)) {
-    deleteComment(commentId);
-  }
+export const deleteCommentById = (commentId: string): void => {
+  deleteComment(commentId);
 };

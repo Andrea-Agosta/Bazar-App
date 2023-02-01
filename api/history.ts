@@ -1,14 +1,30 @@
-import { addNewHistory, getAllHistory } from 'db/controller/history';
+import { addNewHistory, getAllHistoryByProductId, getAllHistoryByUserId } from 'db/controller/history';
 import express from 'express';
 import { Request, Response } from 'express';
 import { IQueryHistory } from 'type/history';
 const router = express.Router();
 
 
-router.get('/', async (_req: Request, res: Response) => {
+router.get('/product/:id', async (req: Request, res: Response) => {
   try {
-    const response = await getAllHistory();
-    res.status(200).json(response);
+    if (req.params.id) {
+      const response = await getAllHistoryByProductId(req.params.id);
+      res.status(200).json(response);
+    }
+    res.status(400).send('Bad Request');
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+router.get('/product/user/:id', async (req: Request, res: Response) => {
+  try {
+    if (req.params.id) {
+      const response = await getAllHistoryByUserId(req.params.id);
+      res.status(200).json(response);
+    } else {
+      res.status(400).send('Bad Request');
+    }
   } catch (err) {
     res.status(400).send({ message: err.message });
   }

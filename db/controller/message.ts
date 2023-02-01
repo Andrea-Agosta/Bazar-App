@@ -13,7 +13,7 @@ export const addNewMessage = async (req: Request<{}, {}, {}, IQueryMessage>): Pr
   const receiverId = req.query.receiverId;
   const message = req.query.message;
   const uuidRegex: RegExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
-  if (senderId && uuidRegex.test(senderId) && receiverId && uuidRegex.test(receiverId) && message) {
+  if (uuidRegex.test(senderId) && uuidRegex.test(receiverId) && message) {
     const messageId: string = await uuidv4();
     const date: Date = new Date();
     return await addMessage(messageId, senderId, receiverId, date, message);

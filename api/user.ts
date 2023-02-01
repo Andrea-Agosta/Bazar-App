@@ -1,13 +1,18 @@
+import { createUser, deleteUserById, getUserById, updateUserbyId } from 'db/controller/user';
 import express from 'express';
 import { Request, Response } from 'express';
-import { IQueryUser } from 'type/comment';
+import { IQueryUser } from 'type/user';
 const router = express.Router();
 
 
-router.get('/:id', async (req: Request<{}, {}, {}, IQueryUser>, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const response = await getUserById(req.query.idRef);
-    res.status(200).json(response);
+    if (req.params.userId) {
+      const response = await getUserById(req.params.userId);
+      res.status(200).json(response);
+    } else {
+      res.status(400).send('Bad request');
+    }
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
@@ -22,7 +27,7 @@ router.post('/', async (req: Request<{}, {}, {}, IQueryUser>, res: Response) => 
   }
 });
 
-router.patch('/:id', async (req: Request, res: Response) => {
+router.patch('/:id', async (req: Request<{ userId: string }, {}, {}, IQueryUser>, res: Response) => {
   try {
     const response = await updateUserbyId(req);
     res.status(204).json(response);
@@ -33,8 +38,12 @@ router.patch('/:id', async (req: Request, res: Response) => {
 
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const response = await deleteUserById(req.params.idRef);
-    res.status(204).json(response);
+    if (req.params.userId) {
+      const response = await deleteUserById(req.params.userId);
+      res.status(204).json(response);
+    } else {
+      res.status(400).send('Bad Request');
+    }
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
