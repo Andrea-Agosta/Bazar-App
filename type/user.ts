@@ -2,7 +2,7 @@ export interface IQueryUser {
   userFirstName: string
   userLastName: string;
   userEmail: string;
-  userRegistrationDate: Date;
+  userRegistrationDate: string;
   userAvatar: Buffer;
 }
 
@@ -11,6 +11,6 @@ export interface IUser {
   userFirstName: string;
   userLastName: string;
   userEmail: string;
-  userRegistrationDate: Date;
+  userRegistrationDate: string;
   userAvatar: Buffer;
 }

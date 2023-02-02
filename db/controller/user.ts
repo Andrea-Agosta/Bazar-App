@@ -1,4 +1,4 @@
-import { createNewUser, getUser, updateUser } from "../user";
+import { createNewUser, createNewUserWithAvatar, getUser, updateUser } from "../user";
 import { IQueryUser, IUser } from "../../type/user";
 import { Request } from 'express';
 import * as expressFileUpload from 'express-fileupload';
@@ -20,10 +20,10 @@ export const createUser = async (req: Request<{}, {}, {}, IQueryUser>): Promise<
   const userEmail: string = req.query.userEmail;
   let userAvatar: expressFileUpload.FileArray | undefined = undefined;
   req.files && (userAvatar = req.files);
-  if (userFirstName && userLastName && userEmail && userAvatar) {
+  if (userFirstName && userLastName && userEmail) {
     const userId: string = await uuidv4();
-    const userRegistrationDate: Date = new Date();
-    return await createNewUser(userId, userFirstName, userLastName, userEmail, userRegistrationDate, userAvatar)
+    const userRegistrationDate: string = new Date().toLocaleDateString();
+    return userAvatar ? await createNewUserWithAvatar(userId, userFirstName, userLastName, userEmail, userRegistrationDate, userAvatar) : createNewUser(userId, userFirstName, userLastName, userEmail, userRegistrationDate);
   }
   throw new Error('Bad request');
 };

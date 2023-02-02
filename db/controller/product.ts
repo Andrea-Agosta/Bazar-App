@@ -38,12 +38,15 @@ export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promi
   let productImage: expressFileUpload.FileArray | undefined = undefined;
   req.files && (productImage = req.files);
 
-  if (productName && productDescription && productLocation && productCondition && productPrice && uuidRegex.test(userId) && productImage) {
+  if (productName && productDescription && productLocation && productCondition && productPrice && uuidRegex.test(userId)) {
     const productId: string = await uuidv4();
     const productSold: boolean = false;
     const product = await addNewProduct(productId, productName, productDescription, productLocation, productCondition, productPrice, productSold, userId);
-    const image = await addNewProductImages(productId, productImage);
-    return [product, image];
+    if (productImage) {
+      const image = await addNewProductImages(productId, productImage);
+      return [product, image];
+    }
+    return [product];
   }
   throw new Error('Bad request');
 };
