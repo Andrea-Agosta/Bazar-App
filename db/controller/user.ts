@@ -7,14 +7,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 const uuidRegex: RegExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
 
-export const getUserById = async (userId: string): Promise<IUser> => {
+export const getUserById = async (userId: string): Promise<IUser[]> => {
   if (uuidRegex.test(userId)) {
     return await getUser(userId);
   }
   throw new Error('Bad request');
 };
 
-export const createUser = async (req: Request<{}, {}, {}, IQueryUser>): Promise<IUser> => {
+export const createUser = async (req: Request<{}, {}, {}, IQueryUser>): Promise<IUser[]> => {
   const userFirstName: string = req.query.userFirstName;
   const userLastName: string = req.query.userLastName;
   const userEmail: string = req.query.userEmail;
@@ -28,7 +28,7 @@ export const createUser = async (req: Request<{}, {}, {}, IQueryUser>): Promise<
   throw new Error('Bad request');
 };
 
-export const updateUserbyId = async (req: Request<{ userId: string }, {}, {}, IQueryUser>): Promise<IUser> => {
+export const updateUserbyId = async (req: Request<{ userId: string }, {}, {}, IQueryUser>): Promise<IUser[]> => {
   const userId = req.params.userId;
   const userFirstName: string = req.query.userFirstName;
   const userLastName: string = req.query.userLastName;

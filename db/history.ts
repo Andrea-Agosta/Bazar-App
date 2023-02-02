@@ -11,7 +11,7 @@ export const getHistoryByUser = async (userId: string): Promise<IHistory[]> => {
   return await connectionDB(query);
 }
 
-export const addHistory = async (hisotryId: string, productId: string, userId: string, date: Date): Promise<IHistory> => {
+export const addHistory = async (hisotryId: string, productId: string, userId: string, date: Date): Promise<IHistory[]> => {
   const query = `INSERT INTO products_history (history_id, product_id, user_id, date_insert) VALUES (${hisotryId}, ${productId}, ${userId}, ${date})`;
   return await connectionDB(query);
 };

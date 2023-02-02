@@ -2,7 +2,7 @@ import { connectionDB } from "./dbConnection";
 import { IProduct } from "../type/product";
 import * as expressFileUpload from 'express-fileupload';
 
-export const getProduct = async (id: string): Promise<IProduct> => {
+export const getProduct = async (id: string): Promise<IProduct[]> => {
   const query = `SELECT * FROM product WHERE product_id = '${id}'`;
   return await connectionDB(query);
 };
@@ -17,12 +17,12 @@ export const getProductByUser = async (userId: string): Promise<IProduct[]> => {
   return await connectionDB(query);
 };
 
-export const addNewProduct = async (productId: string, productName: string, productDescription: string, productLocation: string, productCondition: string, productPrice: number, productSold: boolean, userId: string): Promise<IProduct> => {
+export const addNewProduct = async (productId: string, productName: string, productDescription: string, productLocation: string, productCondition: string, productPrice: number, productSold: boolean, userId: string): Promise<IProduct[]> => {
   const query = `INSERT INTO products (product_id, product_name, product_description, product_location, product_conditions, product_price, product_sold, user_id) VALUES ('${productId}', '${productName}',' ${productDescription}', '${productLocation}', '${productCondition}', '${productPrice}','${productSold}','${userId}')`;
   return await connectionDB(query);
 };
 
-export const addNewProductImages = async (productId: string, productImage: expressFileUpload.FileArray): Promise<IProduct> => {
+export const addNewProductImages = async (productId: string, productImage: expressFileUpload.FileArray): Promise<IProduct[]> => {
   const query = `INSERT INTO products_images (product_id, productImage) VALUES ('${productId}', decode('${productImage}', 'hex'))`;
   return await connectionDB(query);
 };

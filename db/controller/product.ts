@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const uuidRegex: RegExp = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
 
-export const getProductById = async (id: string): Promise<IProduct> => {
+export const getProductById = async (id: string): Promise<IProduct[]> => {
   if (uuidRegex.test(id)) {
     return await getProduct(id);
   }
@@ -28,7 +28,7 @@ export const getProductByUserId = async (userId: string): Promise<IProduct[]> =>
   throw new Error('Bad request');
 };
 
-export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promise<IProduct[]> => {
+export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promise<IProduct[][]> => {
   const productName: string = req.query.productName;
   const productDescription: string = req.query.productDescription;
   const productLocation: string = req.query.productLocation;
@@ -51,7 +51,7 @@ export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promi
   throw new Error('Bad request');
 };
 
-export const updateProductById = async (req: Request<{ productid: string }, {}, {}, IQueryProduct>): Promise<IProduct[]> => {
+export const updateProductById = async (req: Request<{ productid: string }, {}, {}, IQueryProduct>): Promise<IProduct[][]> => {
   const productid = req.params.productid;
   const productName: string = req.query.productName;
   const productDescription: string = req.query.productDescription;

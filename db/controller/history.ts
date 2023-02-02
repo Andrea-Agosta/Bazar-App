@@ -21,7 +21,7 @@ export const getAllHistoryByUserId = async (userId: string): Promise<IHistory[]>
   throw new Error('Bad request');
 };
 
-export const addNewHistory = async (req: Request<{ productId: string }, {}, {}, IQueryHistory>): Promise<IHistory> => {
+export const addNewHistory = async (req: Request<{ productId: string }, {}, {}, IQueryHistory>): Promise<IHistory[]> => {
   const productId: string = req.params.productId;
   const userId: string = req.query.userId;
   const checkProduct = await getProductById(productId)

@@ -1,8 +1,22 @@
+import { useContext, useEffect } from 'react';
 import Section from '../components/Section'
+import { ProductContext } from '../context/product';
 import homeImage from '../images/home.png'
+import axios from 'axios';
 
 
 const Hompage = () => {
+  const { products, setProducts } = useContext(ProductContext)
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: '/api/tag',
+      responseType: 'stream'
+    })
+      .then(response => console.log(response));
+  }, []);
+
   return (
     <div>
       <img src={homeImage} alt="shop" className='w-screen' />

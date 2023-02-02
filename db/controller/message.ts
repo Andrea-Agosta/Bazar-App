@@ -8,7 +8,7 @@ export const getAllMessage = async (): Promise<IMessage[]> => {
   return await getMessage();
 };
 
-export const addNewMessage = async (req: Request<{}, {}, {}, IQueryMessage>): Promise<IMessage> => {
+export const addNewMessage = async (req: Request<{}, {}, {}, IQueryMessage>): Promise<IMessage[]> => {
   const senderId = req.query.senderId;
   const receiverId = req.query.receiverId;
   const message = req.query.message;

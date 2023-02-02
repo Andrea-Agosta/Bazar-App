@@ -14,7 +14,7 @@ export const getAllComments = async (productId: string): Promise<IComments[]> =>
   throw new Error('Id not found');
 };
 
-export const addNewComment = async (req: Request<{ productId: string }, {}, {}, IQueryComment>): Promise<IComments> => {
+export const addNewComment = async (req: Request<{ productId: string }, {}, {}, IQueryComment>): Promise<IComments[]> => {
   const productId: string = req.params.productId;
   const userId: string = req.query.userId;
   const comment: string = req.query.comment;
@@ -29,7 +29,7 @@ export const addNewComment = async (req: Request<{ productId: string }, {}, {}, 
   throw new Error('Bad request');
 };
 
-export const updateCommentById = async (req: Request<{ commentId: string }, {}, {}, IQueryComment>): Promise<IComments> => {
+export const updateCommentById = async (req: Request<{ commentId: string }, {}, {}, IQueryComment>): Promise<IComments[]> => {
   const commentId: string = req.params.commentId;
   const comment: string = req.query.comment;
   if (uuidRegex.test(commentId) && comment !== '') {
