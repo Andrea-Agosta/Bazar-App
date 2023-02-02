@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { addComment, deleteComment, getCommentsByProductId, updateComment } from "db/comment";
-import { IComments, IQueryComment } from "type/comment";
+import { addComment, deleteComment, getCommentsByProductId, updateComment } from "../comment";
+import { IComments, IQueryComment } from "../../type/comment";
 import { Request } from 'express';
 import { getUserById } from './user';
 import { getProductById } from './product';

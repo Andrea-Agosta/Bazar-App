@@ -1,3 +1,6 @@
-export const getAllTags = async (): Promise<string[]> => {
-  return await getAllTags();
+import { ITag } from "../../type/tag";
+import { getTags } from "../tag";
+
+export const getAllTags = async (): Promise<ITag[]> => {
+  return await getTags();
 };

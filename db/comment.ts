@@ -1,4 +1,4 @@
-import { IComments } from "type/comment";
+import { IComments } from "../type/comment";
 import { connectionDB } from "./dbConnection";
 
 

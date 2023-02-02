@@ -1,4 +1,4 @@
-import { IUser } from "type/user";
+import { IUser } from "../type/user";
 import { connectionDB } from "./dbConnection";
 import * as expressFileUpload from 'express-fileupload';
 

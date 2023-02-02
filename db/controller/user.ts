@@ -1,5 +1,5 @@
-import { createNewUser, getUser, updateUser } from "db/user";
-import { IQueryUser, IUser } from "type/user";
+import { createNewUser, getUser, updateUser } from "../user";
+import { IQueryUser, IUser } from "../../type/user";
 import { Request } from 'express';
 import * as expressFileUpload from 'express-fileupload';
 import { v4 as uuidv4 } from 'uuid';

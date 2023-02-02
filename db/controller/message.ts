@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { addMessage, getMessage } from "db/message";
-import { IMessage, IQueryMessage } from "type/message";
+import { addMessage, getMessage } from "../message";
+import { IMessage, IQueryMessage } from "../../type/message";
 import { Request } from 'express';
 
 

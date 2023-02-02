@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { addNewProduct, addNewProductImages, deleteImage, deleteProduct, getProduct, getProductByTagId, getProductByUser, updateProduct } from "db/product";
-import { IProduct, IQueryProduct } from "type/product";
+import { addNewProduct, addNewProductImages, deleteImage, deleteProduct, getProduct, getProductByTagId, getProductByUser, updateProduct } from "../product";
+import { IProduct, IQueryProduct } from "../../type/product";
 import * as expressFileUpload from 'express-fileupload';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -1,4 +1,4 @@
-import { addNewComment, deleteCommentById, getAllComments, updateCommentById } from 'db/controller/comment';
+import { addNewComment, deleteCommentById, getAllComments, updateCommentById } from '../db/controller/comment';
 import express from 'express';
 import { Request, Response } from 'express';
 import { IQueryComment } from 'type/comment';

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { addHistory, getHistoryByProduct, getHistoryByUser, } from "db/history";
-import { IHistory, IQueryHistory } from "type/history";
+import { addHistory, getHistoryByProduct, getHistoryByUser, } from "../history";
+import { IHistory, IQueryHistory } from "../../type/history";
 import { Request } from 'express';
 import { getProductById } from './product';
 import { getUserById } from './user';

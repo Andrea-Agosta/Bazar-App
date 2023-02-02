@@ -1,9 +1,13 @@
-import { createUser, deleteUserById, getUserById, updateUserbyId } from 'db/controller/user';
 import express from 'express';
 import { Request, Response } from 'express';
+import { createUser, deleteUserById, getUserById, updateUserbyId } from '../db/controller/user';
 import { IQueryUser } from 'type/user';
 const router = express.Router();
 
+
+router.get('/', async (req: Request, res: Response) => {
+  console.log(req, res);
+});
 
 router.get('/:id', async (req: Request, res: Response) => {
   try {

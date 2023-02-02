@@ -1,4 +1,4 @@
-import { addNewHistory, getAllHistoryByProductId, getAllHistoryByUserId } from 'db/controller/history';
+import { addNewHistory, getAllHistoryByProductId, getAllHistoryByUserId } from '../db/controller/history';
 import express from 'express';
 import { Request, Response } from 'express';
 import { IQueryHistory } from 'type/history';

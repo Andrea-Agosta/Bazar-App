@@ -1,4 +1,4 @@
-import { addProduct, deleteProductById, getProductById, getProductByTag, getProductByUserId, updateProductById } from 'db/controller/product';
+import { addProduct, deleteProductById, getProductById, getProductByTag, getProductByUserId, updateProductById } from '../db/controller/product';
 import express from 'express';
 import { Request, Response } from 'express';
 import { IQueryProduct } from 'type/product';

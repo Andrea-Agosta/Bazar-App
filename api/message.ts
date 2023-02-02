@@ -1,4 +1,4 @@
-import { addNewMessage, getAllMessage } from 'db/controller/message';
+import { addNewMessage, getAllMessage } from '../db/controller/message';
 import express from 'express';
 import { Request, Response } from 'express';
 import { IQueryMessage } from 'type/message';

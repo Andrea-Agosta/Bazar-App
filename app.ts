@@ -3,12 +3,12 @@ dotenv.config()
 import express from 'express';
 import { Application } from 'express';
 import bodyParser from 'body-parser';
-import user from 'api/user';
-import product from 'api/product';
-import tag from 'api/tag';
-import history from 'api/history';
-import comment from 'api/comment';
-import message from 'api/message';
+import user from './api/user';
+import product from './api/product';
+import tag from './api/tag';
+import comment from './api/comment';
+import message from './api/message';
+import history from './api/history';
 
 
 const app: Application = express();

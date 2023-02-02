@@ -1,4 +1,4 @@
-import { IMessage } from "type/message";
+import { IMessage } from "../type/message";
 import { connectionDB } from "./dbConnection";
 
 export const getMessage = async (): Promise<IMessage[]> => {

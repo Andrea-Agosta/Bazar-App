@@ -1,4 +1,4 @@
-import { IHistory } from "type/history";
+import { IHistory } from "../type/history";
 import { connectionDB } from "./dbConnection";
 
 export const getHistoryByProduct = async (productId: string): Promise<IHistory[]> => {

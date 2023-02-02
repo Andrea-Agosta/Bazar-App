@@ -1,4 +1,4 @@
-import { getAllTags } from 'db/tag';
+import { getAllTags } from '../db/controller/tag';
 import express from 'express';
 import { Request, Response } from 'express';
 const router = express.Router();

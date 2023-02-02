@@ -1,5 +1,5 @@
 import { connectionDB } from "./dbConnection";
-import { IProduct } from "type/product";
+import { IProduct } from "../type/product";
 import * as expressFileUpload from 'express-fileupload';
 
 export const getProduct = async (id: string): Promise<IProduct> => {
