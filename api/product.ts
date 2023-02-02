@@ -17,7 +17,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:Tag/:id', async (req: Request, res: Response) => {
+router.get('/:Tag/:tagId', async (req: Request, res: Response) => {
   try {
     if (req.params.tagId) {
       const response = await getProductByTag(req.params.tagId);

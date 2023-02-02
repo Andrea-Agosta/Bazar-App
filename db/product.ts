@@ -3,17 +3,17 @@ import { IProduct } from "../type/product";
 import * as expressFileUpload from 'express-fileupload';
 
 export const getProduct = async (id: string): Promise<IProduct[]> => {
-  const query = `SELECT * FROM product WHERE product_id = '${id}'`;
+  const query = `SELECT * FROM products WHERE product_id = '${id}'`;
   return await connectionDB(query);
 };
 
 export const getProductByTagId = async (tagId: string): Promise<IProduct[]> => {
-  const query = `SELECT p.* FROM product p JOIN tag_product tp ON p.product_id = tp.product_id JOIN tags t ON tp.tag_id = t.tag_id WHERE t.tag_id = '${tagId}'`;
+  const query = `SELECT p.* FROM products p JOIN tag_product tp ON p.product_id = tp.product_id JOIN tags t ON tp.tag_id = t.tag_id WHERE t.tag_id = '${tagId}'`;
   return await connectionDB(query);
 };
 
 export const getProductByUser = async (userId: string): Promise<IProduct[]> => {
-  const query = `SELECT * FROM product WHERE user_id = '${userId}'`;
+  const query = `SELECT * FROM products WHERE user_id = '${userId}'`;
   return await connectionDB(query);
 };
 
@@ -26,6 +26,11 @@ export const addNewProductImages = async (productId: string, productImage: expre
   const query = `INSERT INTO products_images (product_id, productImage) VALUES ('${productId}', decode('${productImage}', 'hex'))`;
   return await connectionDB(query);
 };
+
+export const addTagToProduct = async (tagProdactId: string, productId: string, tagId: string) => {
+  const query = `INSERT INTO tag_product (tag_product_id, product_id, tag_id) VALUES ('${tagProdactId}', '${productId}', '${tagId}')`;
+  return await connectionDB(query);
+}
 
 export const updateProduct = async (productId: string, productName: string, productDescription: string, productLocation: string, productCondition: string, productPrice: number, productSold: boolean, userId: string) => {
   const query = `UPDATE products SET product_name = '${productName}', product_description = '${productDescription}', product_location ='${productLocation}', product_conditions = '${productCondition}', product_price = '${productPrice}', product_sold = '${productSold}', user_id = '${userId}' WHERE product_id = '${productId}'`;

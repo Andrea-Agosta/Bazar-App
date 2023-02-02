@@ -8,6 +8,7 @@ export interface IQueryProduct {
   productSold: boolean;
   userId: string;
   productImage: Buffer;
+  tagId: string;
 }
 
 export interface IProduct {
@@ -15,9 +16,12 @@ export interface IProduct {
   productName: string;
   productDescription: string;
   productLocation: string;
-  productConditions: string;
+  productCondition: string;
   productPrice: number;
   productSold: boolean;
   userId: string;
+}
+
+export interface IProductWithImage extends IProduct {
   productImage: Buffer;
 }

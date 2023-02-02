@@ -12,7 +12,7 @@ interface IData {
 
 export const ProductContext = createContext<IProductContext>({} as IProductContext);
 
-export const PostContestProvider = ({ children }: IData) => {
+export const ProductContestProvider = ({ children }: IData) => {
   const [products, setProducts] = useState<IProduct[]>([{} as IProduct]);
   return <ProductContext.Provider value={{ products, setProducts }}> {children} </ProductContext.Provider>
 };

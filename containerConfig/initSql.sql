@@ -17,7 +17,7 @@ CREATE TABLE public.products (
     product_description VARCHAR(255) NOT NULL,
     product_location VARCHAR(255) NOT NULL,
     product_conditions VARCHAR(255),
-    product_price NUMERIC(5,2) NOT NULL DEFAULT 0,
+    product_price NUMERIC(10,2) NOT NULL DEFAULT 0,
     product_sold BOOLEAN NOT NULL default false,
     user_id uuid NOT NULL,
     CONSTRAINT fk_user
