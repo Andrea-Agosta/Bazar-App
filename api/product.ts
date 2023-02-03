@@ -52,7 +52,7 @@ router.post('/', async (req: Request<{}, {}, {}, IQueryProduct>, res: Response) 
   }
 });
 
-router.put('/:id', async (req: Request<{ productid: string }, {}, {}, IQueryProduct>, res: Response) => {
+router.put('/:id', async (req: Request<{ product_id: string }, {}, {}, IQueryProduct>, res: Response) => {
   try {
     const response = await updateProductById(req);
     res.status(200).json(response);

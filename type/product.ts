@@ -1,25 +1,25 @@
 export interface IQueryProduct {
-  ProductTagId: string;
-  productName: string;
-  productDescription: string;
-  productLocation: string;
-  productCondition: string;
-  productPrice: number;
-  productSold: boolean;
-  userId: string;
-  productImage: Buffer;
-  tagId: string;
+  product_tag_id: string;
+  product_name: string;
+  product_description: string;
+  product_location: string;
+  product_condition: string;
+  product_price: number;
+  product_sold: boolean;
+  user_id: string;
+  product_image: Buffer;
+  tag_id: string;
 }
 
 export interface IProduct {
-  productId: string;
-  productName: string;
-  productDescription: string;
-  productLocation: string;
-  productCondition: string;
-  productPrice: number;
-  productSold: boolean;
-  userId: string;
+  product_id: string;
+  product_name: string;
+  product_description: string;
+  product_location: string;
+  product_condition: string;
+  product_price: number;
+  product_sold: boolean;
+  user_id: string;
 }
 
 export interface IProductWithImage extends IProduct {

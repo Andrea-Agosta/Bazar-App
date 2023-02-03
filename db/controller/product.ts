@@ -21,33 +21,33 @@ export const getProductByTag = async (tagId: string): Promise<IProduct[]> => {
   throw new Error('Bad request');
 };
 
-export const getProductByUserId = async (userId: string): Promise<IProduct[]> => {
-  if (uuidRegex.test(userId)) {
-    return await getProductByUser(userId);
+export const getProductByUserId = async (user_id: string): Promise<IProduct[]> => {
+  if (uuidRegex.test(user_id)) {
+    return await getProductByUser(user_id);
   }
   throw new Error('Bad request');
 };
 
 export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promise<IProduct> => {
-  const productName: string = req.query.productName;
-  const productDescription: string = req.query.productDescription;
-  const productLocation: string = req.query.productLocation;
-  const productCondition: string = req.query.productCondition;
-  const productPrice: number = req.query.productPrice;
-  const userId: string = req.query.userId;
-  const tagId: string = req.query.tagId;
+  const product_name: string = req.query.product_name;
+  const product_description: string = req.query.product_description;
+  const product_location: string = req.query.product_location;
+  const product_condition: string = req.query.product_condition;
+  const product_price: number = req.query.product_price;
+  const user_id: string = req.query.user_id;
+  const tag_id: string = req.query.tag_id;
   // let productImage: expressFileUpload.FileArray | undefined = undefined;
   // req.files && (productImage = req.files);
 
-  if (productName && productDescription && productLocation && productCondition && productPrice && uuidRegex.test(userId), tagId) {
-    const productId: string = await uuidv4();
-    const productSold: boolean = false;
-    await addNewProduct(productId, productName, productDescription, productLocation, productCondition, productPrice, productSold, userId);
+  if (product_name && product_description && product_location && product_condition && product_price && uuidRegex.test(user_id), tag_id) {
+    const product_id: string = await uuidv4();
+    const product_sold: boolean = false;
+    await addNewProduct(product_id, product_name, product_description, product_location, product_condition, product_price, product_sold, user_id);
     const tagProdactId: string = await uuidv4();
-    await addTagToProduct(tagProdactId, productId, tagId);
-    const product: IProduct = { productId, productName, productDescription, productLocation, productCondition, productPrice, productSold, userId }
+    await addTagToProduct(tagProdactId, product_id, tag_id);
+    const product: IProduct = { product_id, product_name, product_description, product_location, product_condition, product_price, product_sold, user_id }
     // if (productImage) {
-    //   const image = await addNewProductImages(productId, productImage);
+    //   const image = await addNewProductImages(product_id, productImage);
     //   return {...product, productImage};
     // }
     return product;
@@ -55,30 +55,30 @@ export const addProduct = async (req: Request<{}, {}, {}, IQueryProduct>): Promi
   throw new Error('Bad request');
 };
 
-export const updateProductById = async (req: Request<{ productid: string }, {}, {}, IQueryProduct>): Promise<IProduct> => {
-  const productId = req.params.productid;
-  const productName: string = req.query.productName;
-  const productDescription: string = req.query.productDescription;
-  const productLocation: string = req.query.productLocation;
-  const productCondition: string = req.query.productCondition;
-  const productPrice: number = req.query.productPrice;
-  const productSold: boolean = req.query.productSold;
-  const userId: string = req.query.userId;
+export const updateProductById = async (req: Request<{ product_id: string }, {}, {}, IQueryProduct>): Promise<IProduct> => {
+  const product_id = req.params.product_id;
+  const product_name: string = req.query.product_name;
+  const product_description: string = req.query.product_description;
+  const product_location: string = req.query.product_location;
+  const product_condition: string = req.query.product_condition;
+  const product_price: number = req.query.product_price;
+  const product_sold: boolean = req.query.product_sold;
+  const user_id: string = req.query.user_id;
   // let productImage: expressFileUpload.FileArray | undefined = undefined;
   // req.files && (productImage = req.files);
-  if (uuidRegex.test(productId)) {
-    await updateProduct(productId, productName, productDescription, productLocation, productCondition, productPrice, productSold, userId);
-    const product: IProduct = { productId, productName, productDescription, productLocation, productCondition, productPrice, productSold, userId };
-    await deleteImage(productId);
-    // await addNewProductImages(productId, productImage);
+  if (uuidRegex.test(product_id)) {
+    await updateProduct(product_id, product_name, product_description, product_location, product_condition, product_price, product_sold, user_id);
+    const product: IProduct = { product_id, product_name, product_description, product_location, product_condition, product_price, product_sold, user_id };
+    await deleteImage(product_id);
+    // await addNewProductImages(product_id, productImage);
     return product;
   }
   throw new Error('Bad request');
 }
 
-export const deleteProductById = (productId: string): void => {
-  if (uuidRegex.test(productId)) {
-    deleteProduct(productId);
-    deleteImage(productId);
+export const deleteProductById = (product_id: string): void => {
+  if (uuidRegex.test(product_id)) {
+    deleteProduct(product_id);
+    deleteImage(product_id);
   }
 };

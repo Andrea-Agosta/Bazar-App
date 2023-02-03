@@ -3,16 +3,26 @@ import Section from '../components/Section'
 import homeImage from '../images/home.png'
 import axios from 'axios';
 import { TagContext } from '../context/tag';
+import { ProductContext } from '../context/product';
 
 
 const Hompage = () => {
   const { tags, setTags } = useContext(TagContext);
+  const { setProducts } = useContext(ProductContext);
+
   useEffect(() => {
     axios({
       method: 'get',
       url: '/api/tag',
     })
-      .then(async response => await setTags(response.data))
+      .then(async response => {
+        await setTags(response.data);
+        axios({
+          method: 'get',
+          url: `/api/product/${response.data.tag_name}/${response.data.tag_id}`,
+        })
+          .then(async response => await setProducts(response.data))
+      })
   }, []);
 
   return (
