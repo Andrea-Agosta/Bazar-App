@@ -1,22 +1,15 @@
-import axios from 'axios';
-import { useContext, useEffect } from 'react';
+// import axios from 'axios';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ITag } from '../../../type/tag';
 import Card from '../components/Card';
 import { ProductContext } from '../context/product';
-// import { Slideshow } from './Slideshow';
 
 const Section = ({ tag }: { tag: ITag }) => {
-  const { tag_id, tag_name } = tag;
-  const { products, setProducts } = useContext(ProductContext);
+  const { tag_name } = tag;
+  const { products } = useContext(ProductContext);
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: `/api/product/${tag_name}/${tag_id}`,
-  //   })
-  //     .then(response => console.log(response, 'PRODUCT'))
-  // }, []);
+  // console.log(products, 'PRODUCTS');
 
   return (
     <section>
@@ -26,8 +19,7 @@ const Section = ({ tag }: { tag: ITag }) => {
       </div>
       <div className='bg-white p-4 transition duration-200 ease-in-out overflow-hidden' >
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-          {/* <Slideshow /> */}
-          {<Card />}
+          {products.map((product, index) => <Card key={index} product={product} />)}
         </div>
       </div>
     </section>
